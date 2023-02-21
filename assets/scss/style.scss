@@ -1,0 +1,131 @@
+// VARIABLES
+$light_cyan: hsl(193, 38%, 86%);
+$neon_green: hsl(150, 100%, 66%);
+$grayish_blue:  hsl(217, 19%, 38%);
+$dark_grayish_blue:  hsl(217, 19%, 24%);
+$dark_blue: hsl(218, 23%, 16%);
+
+
+// MIXINS
+@mixin flex ($direction, $just, $align, $gap){
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $just;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin font ($color, $size,){
+  color: $color;
+  font-size: $size;
+}
+
+@mixin responsive ($min_width){
+  @media screen and (min-width: $min_width){
+    @content;
+  }
+}
+
+// RESETS
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  text-decoration: none;
+}
+
+body{
+  min-height: 100vh;
+}
+
+button{
+  cursor: pointer;
+}
+
+img{
+  display: block;
+  width: 100%;
+}
+
+//STYLES
+body{
+  @include flex(column, center, center, 3em);
+  background-color: $dark_blue;
+  font-family: 'Manrope', sans-serif;
+}
+
+.main{
+  @include flex(column, center, center, 1.5em);
+  background-color: $dark_grayish_blue;
+  border-radius: 10px;
+  max-width: 21.5em;
+  padding: 2.5em 1em 3em 1em;
+  position: relative;
+
+  @include responsive(1440px){
+    border-radius: 15px;
+    max-width: 33.75em;
+    padding: 3em 2em 3em 2em;
+  }
+
+  &__span{
+    @include font($neon_green, .65em);
+    letter-spacing: .3em;
+    text-transform: uppercase;
+
+    @include responsive(1440px){
+      font-size: .8em
+    }
+  }
+
+  &__p{
+    @include font($light_cyan, 1.5em);
+    text-align: center;
+
+    @include responsive(1440px){
+      font-size: 1.75em
+    }
+  }
+
+  &__picture{
+    margin-bottom: 1em;
+    @include responsive(1440px){
+      margin-bottom: 1.5em;
+      margin-top: 1em;
+    }
+  }
+
+  &__btn{
+    background-color: $neon_green;
+    border: none;
+    border-radius: 50%;
+    padding: 1.5em;
+    position: absolute;
+    bottom: -10%;
+
+    &:hover{
+      box-shadow: 0 0 40px 0 $neon_green;
+    }
+  }
+}
+
+.footer{
+  @include flex(column, center, center, 0);
+
+  &__span{
+    @include font($grayish_blue, 1em)
+  }
+
+  &__a{
+    color: $light_cyan;
+    transition: .5s;
+
+    &:hover{
+      color: $neon_green;
+    }
+  }
+}
