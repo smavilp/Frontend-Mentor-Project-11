@@ -8,7 +8,7 @@ const btn = document.getElementById("btn")
 
 const showAdvice = data => {
     idAdvice.textContent = `advice # ${data.slip.id }`
-    advice.textContent = `${data.slip.advice }`
+    advice.textContent = `"${data.slip.advice }"`
 }
 
 const showError = () => {
